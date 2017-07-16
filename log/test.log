@@ -1,0 +1,28 @@
+22:17:29.537 INFO  Test 20 main - sha1:40bd001563085fc35165329ea1ff5c5ecbdbbeef
+22:17:30.213 INFO  my_net.nio.MyNio 48 init - start ok:127.0.0.1:8200
+22:17:46.640 DEBUG my_net.nio.MyNio 59 listen - isAcceptable startsun.nio.ch.SelectionKeyImpl@9ebed6
+22:17:46.640 DEBUG my_net.nio.MyNio 66 listen - read|write ok
+22:18:00.536 DEBUG my_net.nio.MyNio 70 listen - read ok
+22:18:00.553 INFO  data.SessionNio 40 login - msg:login:4add:/127.0.0.1:50730
+22:20:18.830 DEBUG my_net.nio.MyNio 59 listen - isAcceptable startsun.nio.ch.SelectionKeyImpl@9ebed6
+22:20:18.830 DEBUG my_net.nio.MyNio 66 listen - read|write ok
+22:20:25.144 DEBUG my_net.nio.MyNio 70 listen - read ok
+22:20:25.144 INFO  data.SessionNio 40 login - msg:login:3add:/127.0.0.1:50739
+22:21:53.181 DEBUG my_net.nio.MyNio 70 listen - read ok
+22:21:53.181 INFO  data.SessionNio 40 login - msg:login:4add:/127.0.0.1:50730
+22:21:53.181 WARN  data.SessionNio 30 add - have_logined role:4,curr_session_id:1  had_session_id:2
+
+22:21:58.205 DEBUG my_net.nio.MyNio 70 listen - read ok
+22:21:58.205 INFO  data.SessionNio 40 login - msg:login:4add:/127.0.0.1:50730
+22:21:58.205 WARN  data.SessionNio 30 add - have_logined role:4,curr_session_id:1  had_session_id:2
+
+22:21:58.807 DEBUG my_net.nio.MyNio 70 listen - read ok
+22:21:58.807 INFO  data.SessionNio 40 login - msg:login:4add:/127.0.0.1:50730
+22:21:58.807 WARN  data.SessionNio 30 add - have_logined role:4,curr_session_id:1  had_session_id:2
+
+22:22:07.327 DEBUG my_net.nio.MyNio 70 listen - read ok
+22:22:07.327 INFO  data.SessionNio 40 login - msg:login:3add:/127.0.0.1:50739
+22:22:07.327 WARN  data.SessionNio 30 add - have_logined role:3,curr_session_id:1  had_session_id:2
+
+22:22:15.460 WARN  my_net.nio.MyNio 86 shutdown - ====selectLoop=====
+
