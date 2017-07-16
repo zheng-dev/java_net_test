@@ -3,6 +3,7 @@ package my_net.nio;
 import data.SessionNio;
 import my_net.NetServer;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -56,19 +57,24 @@ public class MyNio implements NetServer, Runnable {
                 SelectionKey key = ite.next();
                 ite.remove();//很关键,一个key可能有多个key,不重复处理就要删除
                 if (key.isAcceptable()) {
-                    logger.debug("isAcceptable start" + key.toString());
                     ServerSocketChannel server = (ServerSocketChannel) (key).channel();
                     SocketChannel channel = server.accept();
-                    if (channel != null) {
-                        channel.configureBlocking(false);
-                        channel.socket().setSoTimeout(1);
-                        channel.register(this.selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
-                        logger.debug("read|write ok");
-                    } else logger.debug("read|write null" + key.toString());
+                    channel.configureBlocking(false);
+//                    channel.socket().setSoTimeout(1);
+                    channel.register(this.selector, SelectionKey.OP_READ);
+                    logger.debug("read|write ok");
 
-                } else if (key.isReadable()) {
-                    logger.debug("read ok");
-                    SessionNio.login((SocketChannel) key.channel());
+                } else if (key.isValid() && key.isReadable()) {
+                    try {
+                        SessionNio.login((SocketChannel) key.channel());
+                    } catch (IOException e) {
+                        key.cancel();
+                        ((SocketChannel) key.channel()).socket().close();
+                        key.channel().close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                 } else if (key.isWritable()) {
 //                    logger.debug("write ok");
                 }

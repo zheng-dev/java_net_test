@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channel;
 import java.nio.channels.SocketChannel;
@@ -33,19 +34,22 @@ public class SessionNio {
     }
 
     static public void login(SocketChannel session) throws Exception {
-        ByteBuffer buffer = ByteBuffer.allocate(20);
+        ByteBuffer buffer = ByteBuffer.allocate(200);
         session.read(buffer);
         byte data[] = buffer.array();
+        buffer.clear();
+        buffer.flip();
         String msg = (new String(data)).trim();
-        logger.info("msg:" + msg+"add:"+session.socket().getRemoteSocketAddress().toString());
+        if (msg.length() < 1) {
+            session.close();
+            return;
+        }
+        logger.info("msg:" + msg + "add:" + session.socket().getRemoteSocketAddress().toString());
         String tokens[] = msg.split(":");
         if (tokens[0].equals("login")) {
-            try {
-                Integer role = Integer.valueOf(tokens[1]);
-                add(role, session);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Integer role = Integer.valueOf(tokens[1]);
+            add(role, session);
+
         }
     }
 
