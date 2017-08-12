@@ -5,6 +5,7 @@ import my_net.nio.MyNio;
 import my_threed.Console;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import tool.Http;
 
 import java.awt.*;
 import java.io.*;
@@ -20,7 +21,8 @@ public class Test {
     public static void main(String[] args) throws Exception {
 //        testNet();
 //        MyLambda.main(args);
-        MyPoint.main(args);
+//        MyPoint.main(args);
+        Http.main(args);
 //        logger.info("sha1:" + tool.EncoderHandler.sha1("123".getBytes()));
     }
 
