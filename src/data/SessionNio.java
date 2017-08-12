@@ -33,11 +33,15 @@ public class SessionNio {
         }
     }
 
+//
+
+
     static public void login(SocketChannel session) throws Exception {
         ByteBuffer buffer = ByteBuffer.allocate(200);
         session.read(buffer);
         byte data[] = buffer.array();
         buffer.clear();
+        Thread.sleep(30000);
         buffer.flip();
         String msg = (new String(data)).trim();
         if (msg.length() < 1) {

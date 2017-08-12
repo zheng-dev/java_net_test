@@ -1,3 +1,5 @@
+import data.MyPoint;
+import my_lambda.MyLambda;
 import my_net.mina.MinaServer;
 import my_net.nio.MyNio;
 import my_threed.Console;
@@ -16,8 +18,10 @@ public class Test {
      * @param args
      */
     public static void main(String[] args) throws Exception {
-        testNet();
-        logger.info("sha1:" + tool.EncoderHandler.sha1("123".getBytes()));
+//        testNet();
+//        MyLambda.main(args);
+        MyPoint.main(args);
+//        logger.info("sha1:" + tool.EncoderHandler.sha1("123".getBytes()));
     }
 
     /**

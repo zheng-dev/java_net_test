@@ -55,7 +55,7 @@ public class MyNio implements NetServer, Runnable {
             Iterator<SelectionKey> ite = this.selector.selectedKeys().iterator();
             while (ite.hasNext()) {
                 SelectionKey key = ite.next();
-                ite.remove();//很关键,一个key可能有多个key,不重复处理就要删除
+//                ite.remove();//很关键,一个key可能有多个key,不重复处理就要删除
                 if (key.isAcceptable()) {
                     ServerSocketChannel server = (ServerSocketChannel) (key).channel();
                     SocketChannel channel = server.accept();
@@ -71,6 +71,7 @@ public class MyNio implements NetServer, Runnable {
                         key.cancel();
                         ((SocketChannel) key.channel()).socket().close();
                         key.channel().close();
+                        e.printStackTrace();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -79,7 +80,7 @@ public class MyNio implements NetServer, Runnable {
 //                    logger.debug("write ok");
                 }
             }
-
+            this.selector.selectedKeys().clear();
         }
     }
 
